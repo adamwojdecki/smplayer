@@ -2749,9 +2749,10 @@ void Core::goToSec( double sec ) {
 
 
 void Core::seek(int secs) {
-	qDebug("Core::seek: %d", secs);
-	if ( (proc->isRunning()) && (secs!=0) ) {
-		seek_cmd(secs, 0);
+	double seek_with_speed = (double)secs * mset.speed;
+	qDebug("Core::seek: %f", seek_with_speed);
+	if ( (proc->isRunning()) && (seek_with_speed!=0) ) {
+		seek_cmd(seek_with_speed, 0);
 	}
 }
 
